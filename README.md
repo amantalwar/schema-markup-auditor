@@ -12,51 +12,12 @@ Live at: `https://amantalwar.com/schema-markup`
 
 Everything important about the checks (required vs. recommended) is sourced from Google's own documentation — the tool explicitly notes that Google states **no Article property is strictly required**, only recommended.
 
-## Deploying to Namecheap (cPanel) at amantalwar.com/schema-markup
+## Self-hosting
 
-1. Log into cPanel → **File Manager**.
-2. Navigate to `public_html`.
-3. Create a new folder named `schema-markup`.
-4. Upload the contents of this repo into that folder, so the structure on the server is:
-   ```
-   public_html/schema-markup/index.html
-   public_html/schema-markup/assets/style.css
-   public_html/schema-markup/assets/script.js
-   public_html/schema-markup/api/fetch.php
-   ```
-   (Drag-and-drop upload works in File Manager, or use an FTP client with the credentials from cPanel → FTP Accounts.)
-5. Confirm PHP is enabled for the domain: cPanel → **Select PHP Version** (any PHP 7.4+ is fine — the script uses only core PHP + cURL).
-6. Visit `https://amantalwar.com/schema-markup` — it should load immediately, no build step needed.
+Requires a web server with PHP 7.4+ (cURL extension enabled) — `api/fetch.php` does the server-side fetch so the browser doesn't hit CORS restrictions. No build step; just serve the files as-is.
 
-### CORS allow-list
-
-`api/fetch.php` only allows requests from `https://amantalwar.com` and `https://www.amantalwar.com` (see the `$allowedOrigins` array near the top). If you ever move the tool to another domain or subdomain, update that list.
-
-## Linking it from your homepage
-
-Add a link/button on amantalwar.com pointing to `/schema-markup`, e.g.:
-
-```html
-<a href="/schema-markup">Free Tool: Schema Markup & E-E-A-T Auditor</a>
-```
-
-## Publishing to GitHub (portfolio piece)
-
-```bash
-git init
-git add .
-git commit -m "Initial commit: Schema Markup & E-E-A-T Auditor"
-```
-
-Then create an empty repo on GitHub (e.g. `schema-markup-auditor`) and:
-
-```bash
-git remote add origin https://github.com/<your-username>/schema-markup-auditor.git
-git branch -M main
-git push -u origin main
-```
-
-Keep this repo in sync manually — pushing to GitHub does **not** auto-deploy to Namecheap. Re-upload changed files via File Manager/FTP after each update (or set up an FTP-deploy GitHub Action later if you want that automated).
+- Update the `$allowedOrigins` array near the top of `api/fetch.php` to whitelist your own domain(s).
+- If a target URL can't be fetched (bot-blocked, login wall, etc.), the "paste HTML source" fallback in the UI works client-side only, with no dependency on the PHP proxy.
 
 ## Notes / future improvements
 
