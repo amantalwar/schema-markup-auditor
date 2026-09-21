@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schema Markup &amp; E-E-A-T Auditor — Free SEO Tool</title>
+<meta name="description" content="Free tool to audit any article's Schema.org structured data and E-E-A-T signals for search and AI discoverability. Built by Aman Talwar.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark">{ }</span>
+      <span class="brand-name">Schema Markup &amp; E-E-A-T Auditor</span>
+    </div>
+    <p class="tagline">Check whether an article is structured for Google, AI Overviews, and LLM citation — free, no signup.</p>
+  </header>
+
+  <main>
+    <section class="input-card">
+      <form id="audit-form">
+        <label for="url-input">Article URL</label>
+        <div class="input-row">
+          <input type="url" id="url-input" name="url" placeholder="https://example.com/news/some-article" required>
+          <button type="submit" id="analyze-btn">Analyze</button>
+        </div>
+        <button type="button" id="toggle-paste" class="link-btn">Can't fetch this URL? Paste HTML source instead</button>
+        <div id="paste-area" class="paste-area hidden">
+          <label for="html-input">Paste page HTML (View Source / Ctrl+U, then copy all)</label>
+          <textarea id="html-input" rows="8" placeholder="<html>...</html>"></textarea>
+          <button type="button" id="analyze-paste-btn">Analyze pasted HTML</button>
+        </div>
+      </form>
+      <p class="status" id="status-line" aria-live="polite"></p>
+    </section>
+
+    <section id="results" class="results hidden">
+
+      <div class="score-card">
+        <div class="score-circle" id="score-circle">
+          <span id="score-number">–</span>
+        </div>
+        <div class="score-meta">
+          <h2 id="score-label">Score</h2>
+          <p id="score-sub"></p>
+          <p class="analyzed-url" id="analyzed-url"></p>
+        </div>
+      </div>
+
+      <div class="report-section">
+        <h3>Article Schema (Schema.org)</h3>
+        <p class="section-help">What Google and AI systems read to understand this is an article, who wrote it, and when. Per <a href="https://developers.google.com/search/docs/appearance/structured-data/article" target="_blank" rel="noopener">Google's own docs</a>, no Article property is strictly "required" — these are all recommended properties that improve how your content is understood and displayed.</p>
+        <ul class="checklist" id="schema-checks"></ul>
+      </div>
+
+      <div class="report-section">
+        <h3>Author &amp; E-E-A-T Signals</h3>
+        <p class="section-help">Signals of who wrote this and why they should be trusted — key for AI Overviews and citation.</p>
+        <ul class="checklist" id="eeat-checks"></ul>
+      </div>
+
+      <div class="report-section">
+        <h3>Technical &amp; Meta Signals</h3>
+        <p class="section-help">Canonical tags, HTTPS, Open Graph, and other baseline signals crawlers rely on.</p>
+        <ul class="checklist" id="tech-checks"></ul>
+      </div>
+
+      <div class="report-section">
+        <h3>Detected JSON-LD</h3>
+        <p class="section-help">Raw structured data found on the page, for reference.</p>
+        <pre id="jsonld-raw" class="raw-block">No JSON-LD found.</pre>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Free tool by <a href="https://amantalwar.com" target="_blank" rel="noopener">Aman Talwar</a>. Checks are based on
+      <a href="https://developers.google.com/search/docs/appearance/structured-data/article" target="_blank" rel="noopener">Google's Article structured data guidelines</a>
+      and general E-E-A-T best practices. Not affiliated with Google.</p>
+  </footer>
+
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>
