@@ -28,3 +28,6 @@ Requires a web server with PHP 7.4+ (cURL extension enabled) — `api/fetch.php`
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+Built by [Aman Talwar](https://amantalwar.com).
+
